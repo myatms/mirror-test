@@ -13,8 +13,7 @@ before_script:
 production-deploy:
   stage: deploy
   script:
-    #    - cp .env.example .env
-    #    - composer install --no-interaction --quiet --no-scripts --prefer-dist
+    
     - aws configure set default.region ${AWS_REGION}
     - aws deploy push --application-name ${AWS_CODEDEPLOY_APP} --s3-location s3://${AWS_CODEDEPLOY_S3_BUCKET}/packages/${CI_COMMIT_SHA}.zip --ignore-hidden-files
     - aws deploy create-deployment --application-name ${AWS_CODEDEPLOY_APP} --s3-location bucket=${AWS_CODEDEPLOY_S3_BUCKET},key=packages/${CI_COMMIT_SHA}.zip,bundleType=zip --deployment-group-name ${AWS_CODEDEPLOY_GROUP}
