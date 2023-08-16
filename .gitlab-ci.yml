@@ -13,9 +13,8 @@ before_script:
 production-deploy:
   stage: deploy
   script:
-    
     - aws configure set default.region ${AWS_REGION}
-    - aws deploy push --application-name ${AWS_CODEDEPLOY_APP} --s3-location s3://${AWS_CODEDEPLOY_S3_BUCKET}/packages/${CI_COMMIT_SHA}.zip --ignore-hidden-files
+    - aws deploy push --application-name ${AWS_CODEDEPLOY_APP} --s3-location s3://${AWS_CODEDEPLOY_S3_BUCKET}/packages/${CI_COMMIT_SHA}.zip 
     - aws deploy create-deployment --application-name ${AWS_CODEDEPLOY_APP} --s3-location bucket=${AWS_CODEDEPLOY_S3_BUCKET},key=packages/${CI_COMMIT_SHA}.zip,bundleType=zip --deployment-group-name ${AWS_CODEDEPLOY_GROUP}
   when: manual
 
