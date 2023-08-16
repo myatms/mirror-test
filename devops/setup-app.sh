@@ -2,7 +2,10 @@
 # appspec.yml.
 
 # Move the previously downloaded .env file to the right place.
-composer create-project bagisto/bagisto --working-dir=/var/www/html
+mkdir /tmp/code
+composer create-project bagisto/bagisto --working-dir=/tmp/code/
+sudo mv /tmp/code/bagisto/* /var/www/html/bagisto/
+sudo mv /tmp/code/bagisto/.* /var/www/html/bagisto/
 sudo rm -rf /var/www/html/bagisto/.env
 sudo mv /tmp/env.txt /var/www/html/bagisto/.env
 sudo rm -rf /etc/nginx/nginx.conf
