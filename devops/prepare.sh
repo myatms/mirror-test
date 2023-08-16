@@ -4,7 +4,7 @@ touch /tmp/deployment-started
 
 aws s3 cp s3://mms-codedeploy/env.txt /tmp/env.txt
 aws s3 cp s3://mms-codedeploy/nginx.conf /tmp/nginx.conf
-sudo mkdir -p /var/www/html/
+sudo mkdir -p /var/www/html/bagisto
 sudo chown -R ec2-user:ec2-user /var/www/html/
 sudo chmod -R 775 /var/www/html/
 
